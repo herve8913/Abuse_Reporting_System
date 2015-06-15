@@ -41,7 +41,7 @@
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Abuse &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li class="active"><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
               </ul><%}else if (userType==3){ %>
               <li class="active"><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li><%} %>
               <%if(userType==2){ %>
@@ -76,7 +76,7 @@
       </div>
       <div class="row">
               	<div class="col-md-8" style="padding:3px">
-			 <a id="btn-create" type="button" class="btn btn-primary" href="<%=response.encodeURL(request.getContextPath()+"/Controller?action=createreport") %>"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Abuse Report</a>
+			 <%if(userType==3) {%><a id="btn-create" type="button" class="btn btn-primary" href="<%=response.encodeURL(request.getContextPath()+"/CreateReport?action=createreport") %>"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Abuse Report</a><%} %>
         </div>
         <div class="col-md-4" style="padding:3px">
  			 <input id="filter" type="text" class="form-control" placeholder="Search..." >
@@ -109,8 +109,10 @@
         				</td>
         				<td data-title="Operations">
         				<div>
+        				<%if(abuseReport.getStatus()==1 && userType==3){ %>
 					    <button type="button" id="deleteAbuseReport" name="DeleteAbuseReport" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal<%=i%>"><span class="glyphicon glyphicon-trash"></span>&nbsp;Delete</button>
-						<a id="button" class="btn btn-primary btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=modifypage&reportId="+abuseReport.getId()) %>"><i class="glyphicon glyphicon-cog"></i>&nbsp;Modify</a>
+						<a id="button" class="btn btn-primary btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/ModifyReport?action=modifypage&reportId="+abuseReport.getId()) %>"><i class="glyphicon glyphicon-cog"></i>&nbsp;Modify</a>
+						<%} %>
 						</div>
 						</td>
         			</tr>

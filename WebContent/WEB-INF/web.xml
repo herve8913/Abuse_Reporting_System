@@ -9,8 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <resource-ref>
     <description>postgreSQL Datasource example</description>
     <res-ref-name>jdbc/abusereport</res-ref-name>

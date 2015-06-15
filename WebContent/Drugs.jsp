@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
           </button>
           <%if(userType==1){ %>
-          <a class="navbar-brand" href="<%=response.encodeURL(request.getContextPath()+"/Controller?action=user") %>">Abuse Report System</a><%}else{ %>
+          <a class="navbar-brand" href="<%=response.encodeURL(request.getContextPath()+"/CreateUser?action=user") %>">Abuse Report System</a><%}else{ %>
           <a class="navbar-brand" href="CreateAbuseReportViewPage.jsp">Abuse Report System</a><%} %>
         </div>
         <div class="navbar-collapse collapse">
@@ -43,7 +43,7 @@
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Abuse &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
               </ul><%}else if (userType==3){ %>
               <li><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li><%} %>
               <%if(userType==2){ %>
@@ -54,11 +54,11 @@
             <li class="dropdown active">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Panel<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=user") %>">Users</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=patient") %>">Patients</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=homegroup") %>">Home Groups</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=disability") %>">Disabilities</a></li>
-                <li class="active"><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=drug") %>">Drugs</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateUser?action=user") %>">Users</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreatePatient?action=patient") %>">Patients</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateHomeGroup?action=homegroup") %>">Home Groups</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateDisability?action=disability") %>">Disabilities</a></li>
+                <li class="active"><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateDrug?action=drug") %>">Drugs</a></li>
               </ul>
             </li><%} %>
           </ul>
@@ -84,7 +84,7 @@
       </div>
       <div class="row">
       	  <div class="col-md-8" style="padding:3px">
-      	   <a id="btn-create" type="button" class="btn btn-primary" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=newdrug") %>"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Drug</a>
+      	   <a id="btn-create" type="button" class="btn btn-primary" href="<%= response.encodeUrl(request.getContextPath() + "/CreateDrug?action=newdrug") %>"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Drug</a>
         </div>
         <div class="col-md-4" style="padding:3px">
  			 <input id="filter" type="text" class="form-control" placeholder="Search..." >
@@ -110,7 +110,7 @@
         				<td data-title="Operations">
         				<div>
 					    <button type="button" id="deleteAbuseReport" name="DeleteAbuseReport" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal<%=i%>"><span class="glyphicon glyphicon-trash"></span>&nbsp;Delete</button>
-						<a id="button" class="btn btn-primary btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=updatedrug&drugId="+drug.getId()) %>"><i class="glyphicon glyphicon-cog"></i>&nbsp;Modify</a>
+						<a id="button" class="btn btn-primary btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/CreateDrug?action=updatedrug&drugId="+drug.getId()) %>"><i class="glyphicon glyphicon-cog"></i>&nbsp;Modify</a>
 						</div>
 						</td>
         			</tr><%} %>
@@ -126,7 +126,7 @@
     for(Drug drug:listOfDrugs){ j++;%>
 <div class="modal fade" id="myModal<%=j %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-  <form method="post" action="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=dodeletedrug") %>">
+  <form method="post" action="<%= response.encodeUrl(request.getContextPath() + "/CreateDrug?action=dodeletedrug") %>">
   <input type= "hidden" name="drugid" value="<%=drug.getId()%>"></input>
     <div class="modal-content">
       <div class="modal-header">

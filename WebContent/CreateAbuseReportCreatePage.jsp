@@ -82,7 +82,7 @@ function isDis2() { return (document.frmForm.lck2.value==_T); }
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Abuse &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li class="active"><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
               </ul><%}else if (userType==3){ %>
               <li class="active"><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li><%} %>
               <%if(userType==2){ %>
@@ -116,7 +116,7 @@ function isDis2() { return (document.frmForm.lck2.value==_T); }
           </div>
         </div>
 		<div class="row">
-      	  <form  name="frmForm" class="form-horizontal" method="post" action="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=docreatereport") %>">
+      	  <form  name="frmForm" class="form-horizontal" method="post" action="<%= response.encodeUrl(request.getContextPath() + "/CreateReport?action=docreatereport") %>">
 			<fieldset>
 			<legend>General Information</legend>
 				<!-- Button -->

@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import controller.Utils;
+
 public class AbuseReport {
 
 	private int id;
@@ -615,9 +617,9 @@ public class AbuseReport {
 	public static List<AbuseReport> supervisorApprovalView(Connection conn, int sta){
 		List<AbuseReport> listOfSupervisorReport = new LinkedList<>();
 		String sql = null;
-		if(sta==2){
+		if(sta==Utils.SUBMITED){
 		 sql ="SELECT id, reporter_name, status, public_log_number, disposition_letter, decision_letter, appeal_letter, due_date FROM abusereport WHERE status = ? ORDER BY id DESC";
-		}else if (sta==3||sta==5){
+		}else if (sta==Utils.APPROVED||sta==Utils.DECISION_LETTER){
 			sql="SELECT id, reporter_name, status, public_log_number, disposition_letter, decision_letter, appeal_letter, due_date FROM abusereport WHERE status >= ? ORDER BY id DESC";
 		}
 		try {PreparedStatement stmt = conn.prepareStatement(sql);
@@ -738,7 +740,8 @@ public class AbuseReport {
 	public static List<AbuseReport> userAbuseReportView(int userType,
 			int userId, Connection conn) {
 		List<AbuseReport> listOfAbuseReport = new LinkedList<AbuseReport>();
-		if (userType == 1 || userType == 2) {
+		//supervisor can see all the reports
+		if (userType == Utils.SUPERVISOR) {
 			String sql = "SELECT id, reporter_name, status, public_log_number  FROM abusereport ORDER BY id DESC";
 			try {
 				Statement stmt = conn.createStatement();
@@ -761,7 +764,8 @@ public class AbuseReport {
 				e.printStackTrace();
 			}
 
-		} else if (userType == 3) {
+		} else if (userType == Utils.STAFF) {
+			//staff can only see the reports they wrote
 			String sql = "SELECT id,reporter_name, status, public_log_number FROM abusereport WHERE reporter_id=?  ORDER BY id DESC";
 			PreparedStatement stmt;
 			try {
@@ -775,6 +779,7 @@ public class AbuseReport {
 					int status = rs.getInt("status");
 					AbuseReport abuseReport = new AbuseReport(id, reporterName,
 							status, logNumber, conn);
+					listOfAbuseReport.add(abuseReport);
 				}
 				rs.close();
 				stmt.close();
@@ -798,6 +803,7 @@ public class AbuseReport {
 			if (rs.next()) {
 				
 				setReporterName(rs.getString("staff_user_name")+" "+rs.getString("staff_user_last_name"));
+				System.out.println("reporter name: "+ getReporterName());
 				setReporterTelephone(rs.getString("staff_telephone"));
 				setAllegedVictimAddress(rs.getString("group_home_address"));
 				setAllegedVictimDatebirth(rs.getDate("birthdate"));

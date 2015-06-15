@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
           </button>
           <%if(userType==1){ %>
-          <a class="navbar-brand" href="<%=response.encodeURL(request.getContextPath()+"/Controller?action=user") %>">Abuse Report System</a><%}else{ %>
+          <a class="navbar-brand" href="<%=response.encodeURL(request.getContextPath()+"/CreateUser?action=user") %>">Abuse Report System</a><%}else{ %>
           <a class="navbar-brand" href="CreateAbuseReportViewPage.jsp">Abuse Report System</a><%} %>
         </div>
         <div class="navbar-collapse collapse">
@@ -43,7 +43,7 @@
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Abuse &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
               </ul><%}else if (userType==3){ %>
               <li><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li><%} %>
               <%if(userType==2){ %>
@@ -54,11 +54,11 @@
             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Panel<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=user") %>">Users</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=patient") %>">Patients</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=homegroup") %>">Home Groups</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=disability") %>">Disabilities</a></li>
-                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=drug") %>">Drugs</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateUser?action=user") %>">Users</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreatePatient?action=patient") %>">Patients</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateHomeGroup?action=homegroup") %>">Home Groups</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateDisability?action=disability") %>">Disabilities</a></li>
+                <li ><a href="<%= response.encodeUrl(request.getContextPath() + "/CreateDrug?action=drug") %>">Drugs</a></li>
               </ul>
             </li><%} %>
           </ul>

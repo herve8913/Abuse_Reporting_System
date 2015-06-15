@@ -20,6 +20,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import controller.Utils;
+
 public class User {
 	private Connection conn;
 	private int id;
@@ -253,10 +255,11 @@ public class User {
 	public List<String> login1() throws SQLException{
 		
 		List<String> list = new ArrayList<String>();
-		String sql = "SELECT * FROM system_user WHERE login=? OR login_password=?";
+		String sql = "SELECT * FROM system_user WHERE login=? AND login_password=?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, email);
 			stmt.setString(2, password);
+			System.out.println(email + " pd "+ password);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()){
 				String userName= rs.getString("user_name");
@@ -266,6 +269,7 @@ public class User {
 				String socialSecurity = rs.getString("social_security");
 				int id1=rs.getInt("id");
 				int userType1 = rs.getInt("user_type");
+				System.out.println("type: "+userType1);
 				String id = Integer.toString(id1);
 				String userType = Integer.toString(userType1);
 				list.add(userName);
@@ -434,7 +438,7 @@ public class User {
 	public static List<User> getStaffMembers(Connection conn, int userType){
 		List<User> listStaffMembers = new LinkedList<User>();
 		String sql=null;
-		if (userType==1){
+		if (userType==Utils.ADMIN){
 			sql = "SELECT * FROM all_user_view WHERE user_type > ? AND status=1";
 		}else {
 		sql="SELECT * FROM system_user WHERE user_type = ? AND status=1";

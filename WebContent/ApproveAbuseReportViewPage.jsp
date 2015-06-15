@@ -42,7 +42,7 @@
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Abuse &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li ><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li>
-                <li class="active"><a href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
+                <li class="active"><a href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveabusereport") %>">Approve Abuse Reports &nbsp;<span class="badge"><%=session.getAttribute("submittedreport") %></span></a></li>
               </ul><%}else if (userType==3){ %>
               <li class="active"><a href="CreateAbuseReportViewPage.jsp">Create Abuse Report</a></li><%} %>
               <%if(userType==2){ %>
@@ -113,7 +113,7 @@
         				<td data-title="Operations">
         				<div>
 					       <button type="button" id="rejectAbuseReport" name="RejectAbuseReport" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal<%=i++%>"><span class="glyphicon glyphicon-remove"></span>&nbsp;Reject</button>
-						   <a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approvalpage&reportId="+abuseReport.getId()) %>"><i class="glyphicon glyphicon-ok"></i>&nbsp;Approve</a>						
+						   <a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approvalpage&reportId="+abuseReport.getId()) %>"><i class="glyphicon glyphicon-ok"></i>&nbsp;Approve</a>						
 						</div>
 						</td>
         			</tr><%} %>
@@ -152,7 +152,7 @@
         				
             			<a href="<%= response.encodeUrl(request.getContextPath() + "/AbuseReportFiles/"+abuseReport.getDispositionLetter()) %>" style="font-weight:bold" target="_blank"><%=abuseReport.getDispositionLetter() %></a>
             			<a class="btn btn-default btn-xs disposition" data-toggle="modal" data-id="<%=abuseReport.getId()%>" >Change</a>
-            			<a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveletter&reportId="+abuseReport.getId())+"&sta=4" %>">Approve</a>						
+            			<a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveletter&reportId="+abuseReport.getId())+"&sta=4" %>">Approve</a>						
             			<%} %>
             			
         				</td><%} else if(abuseReport.getStatus()>3){%>
@@ -164,7 +164,7 @@
         				
             			<a href="<%= response.encodeUrl(request.getContextPath() + "/AbuseReportFiles/"+abuseReport.getDecisionLetter()) %>" style="font-weight:bold" target="_blank"><%=abuseReport.getDecisionLetter() %></a>
             			<a class="btn btn-default btn-xs decision" data-toggle="modal" data-id="<%=abuseReport.getId()%>" >Change</a>
-            			<a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveletter&reportId="+abuseReport.getId())+"&sta=5" %>">Approve</a>						
+            			<a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveletter&reportId="+abuseReport.getId())+"&sta=5" %>">Approve</a>						
             			<%} %>
             			
         				</td><%}else if(abuseReport.getStatus()>4){ %>
@@ -176,7 +176,7 @@
         				
             			<a href="<%= response.encodeUrl(request.getContextPath() + "/AbuseReportFiles/"+abuseReport.getAppealLetter()) %>" style="font-weight:bold" target="_blank"><%=abuseReport.getAppealLetter() %></a>
             			<a class="btn btn-default btn-xs appeal" data-toggle="modal" data-id="<%=abuseReport.getId()%>" >Change</a>
-            			<a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/Controller?action=approveletter&reportId="+abuseReport.getId())+"&sta=6" %>">Approve</a>						
+            			<a id="button" class="btn btn-success btn-xs" href="<%= response.encodeUrl(request.getContextPath() + "/ApproveReport?action=approveletter&reportId="+abuseReport.getId())+"&sta=6" %>">Approve</a>						
             			<%} %>
             			
         				</td>
